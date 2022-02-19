@@ -12,8 +12,15 @@ public class CenterfugtunesControl : MonoBehaviour
     public float time = 0;
     public Text Ttext;
     public Transform Ready;
-    
 
+    private void Update()
+    {
+        if (CenterDone || ThermoDone || FreezingDone)
+        {
+            gameObject.transform.position = Ready.position;
+            CenterDone = false; ThermoDone = false; FreezingDone = false;
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {

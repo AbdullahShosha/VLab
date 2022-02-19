@@ -5,27 +5,34 @@ using UnityEngine.UI;
 
 public class Machine : MonoBehaviour
 {
-
+    private bool GoToCenter;
     private float time = 0;
     public string WorkingName, WorkingViewName;
     protected Collider ambool;
-    
+
     public Text MachineScreenTime, TriggerStayTime;
     public Animator Work;
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        GoToCenter = true;
+    }
     private void OnTriggerStay(Collider other)
     {
         Debug.Log(other.GetComponent<CenterfugtunesControl>().NumberOfElements);
         if (time >= 2.0f)
         {
             TriggerStayTime.text = ((int)time).ToString();
-            if (other.CompareTag("Centerfugtunes") && 
+            if (other.CompareTag("Centerfugtunes") &&
                 other.GetComponent<CenterfugtunesControl>().NumberOfElements > 0)
-            {  
+            {
                 ambool = other;
                 ResetCameraValues();
-                GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(WorkingName, true);
+                if (GoToCenter)
+                {
+                    GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(WorkingName, true);
+                    GoToCenter = false;
+                }
             }
         }
         else
@@ -41,7 +48,7 @@ public class Machine : MonoBehaviour
         GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(WorkingViewName, false);
         GameObject.Find("mainCamera").GetComponent<Animator>().SetBool("Base", false);
     }
-    
+
 
     public void Startcorontine()
     {
@@ -61,7 +68,7 @@ public class Machine : MonoBehaviour
             ChangeValue.MVal--;
             MachineScreenTime.text = ChangeValue.MVal.ToString();
         }
-        
+
         ResetCameraValues();
         GameObject.Find("mainCamera").GetComponent<Animator>().SetBool("Base", true);
         ChangeValue.RVal = 0;
@@ -75,7 +82,7 @@ public class Machine : MonoBehaviour
     public void TurnOff()
     {
         Work.SetBool("IsWorking", false);
-        
+
     }
     public void TurnOn()
     {
