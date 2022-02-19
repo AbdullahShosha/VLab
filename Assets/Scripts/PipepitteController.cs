@@ -50,9 +50,9 @@ public class PipepitteController : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         Ttext.text = ((int)time).ToString();
-        if (time >= 1.0f)
+        if (time >= 2.0f)
         {
-            if (InsidePip == "empty" && other.tag == "Buffer")
+            if (InsidePip == "empty" && other.CompareTag("Buffer"))
             {
                 InsidePip =  other.gameObject.GetComponent<bufferControl>().Name;
             }

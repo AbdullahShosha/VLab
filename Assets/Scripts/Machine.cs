@@ -9,24 +9,24 @@ public class Machine : MonoBehaviour
     private float time = 0;
     public string WorkingName, WorkingViewName;
     protected Collider ambool;
-    public static bool Vortexon;
-    public Text Timee, TriggerStayTime;
-    public Animator Open;
+    
+    public Text MachineScreenTime, TriggerStayTime;
+    public Animator Work;
 
 
     private void OnTriggerStay(Collider other)
     {
-
+        Debug.Log(other.GetComponent<CenterfugtunesControl>().NumberOfElements);
         if (time >= 2.0f)
         {
             TriggerStayTime.text = ((int)time).ToString();
-            if (other.tag == "Centerfugtunes" && 
-                other.GetComponent<CenterfugtunesControl>().Inside.Count > 0)
-            {
+            if (other.CompareTag("Centerfugtunes") && 
+                other.GetComponent<CenterfugtunesControl>().NumberOfElements > 0)
+            {  
                 ambool = other;
-                ChangeCameraView(WorkingViewName,"Base", WorkingName);
+                ResetCameraValues();
+                GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(WorkingName, true);
             }
-            
         }
         else
             time += Time.deltaTime;
@@ -35,27 +35,18 @@ public class Machine : MonoBehaviour
 
 
     //Camera Animation
-    public void ChangeCameraView(string Dissable1, string Dissable2, string Enable)
+    public void ResetCameraValues()
     {
-        GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(Dissable1, false);
-        GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(Enable, false);
-        GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(Dissable2, true);
+        GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(WorkingName, false);
+        GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(WorkingViewName, false);
+        GameObject.Find("mainCamera").GetComponent<Animator>().SetBool("Base", false);
     }
     
 
-
-    public void Votrex()
+    public void Startcorontine()
     {
-        Vortexon = !Vortexon;
-        gameObject.GetComponent<Animator>().SetBool("IsWorking", Vortexon);
-    }
-
-
-
-
-    public void StartCorontine()
-    {
-        ChangeCameraView("base", WorkingName, WorkingViewName);
+        ResetCameraValues();
+        GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(WorkingViewName, true);
         TurnOn();
         StartCoroutine(SatrtWorking());
 
@@ -68,23 +59,27 @@ public class Machine : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             ChangeValue.MVal--;
-            Timee.text = ChangeValue.MVal.ToString();
+            MachineScreenTime.text = ChangeValue.MVal.ToString();
         }
-        ChangeCameraView(WorkingName, WorkingViewName, "Base");
+        
+        ResetCameraValues();
+        GameObject.Find("mainCamera").GetComponent<Animator>().SetBool("Base", true);
         ChangeValue.RVal = 0;
         //Temp.text = ChangeValue.RVal.ToString();
-        TurnOff();
         ambool.GetComponent<CenterfugtunesControl>().ThermoDone = true;
+        TurnOff();
+
     }
 
 
     public void TurnOff()
     {
-        Open.SetBool("IsWorking", false);
+        Work.SetBool("IsWorking", false);
+        
     }
     public void TurnOn()
     {
-        Open.SetBool("IsWorking", true);
+        Work.SetBool("IsWorking", true);
     }
 
 

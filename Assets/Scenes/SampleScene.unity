@@ -467,9 +467,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CenterControl, Assembly-CSharp
-        m_MethodName: StartCorontine
+      - m_Target: {fileID: 1334652431}
+        m_TargetAssemblyTypeName: Machine, Assembly-CSharp
+        m_MethodName: Startcorontine
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1541,10 +1541,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkingName: Thermo
   WorkingViewName: ViewThermo
-  Timee: {fileID: 0}
-  TriggerStayTime: {fileID: 0}
-  Open: {fileID: 0}
-  Temp: {fileID: 0}
+  MachineScreenTime: {fileID: 1617614401}
+  TriggerStayTime: {fileID: 2123163994}
+  Work: {fileID: 485746580}
+  TempOnMachineScreen: {fileID: 132898396}
 --- !u!65 &485746579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2530,7 +2530,6 @@ GameObject:
   - component: {fileID: 759816007}
   - component: {fileID: 759816010}
   - component: {fileID: 759816011}
-  - component: {fileID: 759816012}
   - component: {fileID: 759816013}
   m_Layer: 0
   m_Name: mainCamera
@@ -2633,23 +2632,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
---- !u!114 &759816012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 759816006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8646966a2da556c4ca93c405d4228ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BasePos:
-  - {fileID: 613774597}
-  - {fileID: 875131210}
-  - {fileID: 913590684}
-  - {fileID: 1157285527}
 --- !u!95 &759816013
 Animator:
   serializedVersion: 3
@@ -2846,6 +2828,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1967126, y: 0.72393894, z: 1.1680857}
   m_Center: {x: -0.3019901, y: 3.047417, z: 0.18038113}
+--- !u!114 &816768226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816768224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb570f9a4b292b642a1b75643645afdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &816768227
 Animator:
   serializedVersion: 3
@@ -2865,23 +2859,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &816768228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816768224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae1b4c5f757f21d498af1e09451503f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WorkingName: 
-  WorkingViewName: 
-  Timee: {fileID: 0}
-  TriggerStayTime: {fileID: 0}
-  Open: {fileID: 0}
 --- !u!1001 &817988869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4473,10 +4450,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkingName: Center
   WorkingViewName: ViewCenter
-  Timee: {fileID: 0}
-  TriggerStayTime: {fileID: 0}
-  Open: {fileID: 0}
-  Rev: {fileID: 0}
+  MachineScreenTime: {fileID: 588129287}
+  TriggerStayTime: {fileID: 2123163994}
+  Work: {fileID: 2066288513}
+  SpeedOnMachineScreen: {fileID: 2074322317}
 --- !u!65 &1334652432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4740,9 +4717,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 816768228}
-          m_TargetAssemblyTypeName: Machine, Assembly-CSharp
-          m_MethodName: Votrex
+        - m_Target: {fileID: 816768226}
+          m_TargetAssemblyTypeName: Votrex, Assembly-CSharp
+          m_MethodName: TurnOnAndOff
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -5715,9 +5692,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ThermoControl, Assembly-CSharp
-        m_MethodName: StartCorontine
+      - m_Target: {fileID: 485746578}
+        m_TargetAssemblyTypeName: Machine, Assembly-CSharp
+        m_MethodName: Startcorontine
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7550,28 +7527,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8416272007918961125, guid: 2221c7a3ea52be244ae0b7ab79b6aeb7, type: 3}
   m_PrefabInstance: {fileID: 1842884638}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2066288512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066288511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a330331954f3efb42ad87e2be52eff54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 0
-  ambool: {fileID: 0}
-  Ttext: {fileID: 0}
-  Timee: {fileID: 0}
-  Temp: {fileID: 0}
-  Rev: {fileID: 0}
-  Open: {fileID: 0}
-  Timee: {fileID: 0}
-  Rev: {fileID: 0}
-  Open: {fileID: 0}
 --- !u!95 &2066288513
 Animator:
   serializedVersion: 3

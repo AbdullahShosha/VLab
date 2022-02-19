@@ -6,24 +6,13 @@ using UnityEngine.UI;
 public class CenterfugtunesControl : MonoBehaviour
 {
     public IDictionary<string, int> Inside = new Dictionary<string, int>();
-    public int Count { get; }
+    public int NumberOfElements = 0;
 
-    public bool CenterDone = false;
-    public bool ThermoDone = false;
-    public bool FreezingDone = false;
+    public bool CenterDone = false,ThermoDone = false,FreezingDone = false , Votrex = false;
     public float time = 0;
     public Text Ttext;
     public Transform Ready;
-    private void Update()
-    {
-        if (CenterDone || ThermoDone || FreezingDone)
-        {
-            gameObject.transform.position = Ready.position;
-            CenterDone = false;
-            ThermoDone = false;
-            FreezingDone = false;
-        }
-    }
+    
 
 
     private void OnTriggerStay(Collider other)
@@ -38,7 +27,10 @@ public class CenterfugtunesControl : MonoBehaviour
                 if (Inside.ContainsKey(other.GetComponent<PipepitteController>().InsidePip))
                     Inside[other.GetComponent<PipepitteController>().InsidePip] += other.GetComponent<PipepitteController>().Size;
                 else
+                {
                     Inside.Add(other.GetComponent<PipepitteController>().InsidePip, other.GetComponent<PipepitteController>().Size);
+                    NumberOfElements++;
+                }
 
                 other.GetComponent<PipepitteController>().InsidePip = "empty";
             }
