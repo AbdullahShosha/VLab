@@ -10,7 +10,7 @@ public class Steps : MonoBehaviour
     public static GameObject WrongStepPanel;
     public GameObject WrongStepPanel1;
     static string[] instructions = new string[13];
-    public static int Step = 0;
+    public static int Step = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,16 +31,18 @@ public class Steps : MonoBehaviour
         instructiontext = GameObject.FindGameObjectWithTag("StepText").GetComponent<Text>();
         WrongStepPanel = WrongStepPanel1;
 
-        steptext.text = "Step " + (Step+1).ToString() + " :";
-        instructiontext.text = instructions[Step];
-        Step++;
+        steptext.text = "Step " + (Step).ToString() + " :";
+        instructiontext.text = instructions[Step-1];
+ 
     }
+
 
     public static void NextStep()
     {
-        steptext.text = "Step "+(Step+1).ToString()+" :";
-        instructiontext.text = instructions[Step];
         Step++;
+        steptext.text = "Step "+Step.ToString()+" :";
+        instructiontext.text = instructions[Step-1];
+        
     }
     public void okWrongStep()
     {

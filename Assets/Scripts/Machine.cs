@@ -11,7 +11,7 @@ public class Machine : MonoBehaviour
     public string WorkingName, WorkingViewName;
     protected Collider ambool;
     public GameObject DonePanel;
-    public Text MachineScreenTime, TriggerStayTime;
+    public Text MachineScreenTime, TriggerStayTime ,ErrorPanelText;
     public Animator Work;
 
     private void OnTriggerEnter(Collider other)
@@ -24,25 +24,35 @@ public class Machine : MonoBehaviour
         if (time >= 2.0f)
         {
             TriggerStayTime.text = ((int)time).ToString();
-            if (other.CompareTag("Centerfugtunes") &&
-                other.GetComponent<CenterfugtunesControl>().NumberOfElements > 0)
+            if (other.CompareTag("Centerfugtunes"))
             {
-                ambool = other;
-                ResetCameraValues();
-                if (GoToCenter && ((WorkingName == "Thermo" && Steps.Step == 5) ||
-                    (WorkingName == "Center" &&
-                    (Steps.Step == 7 || Steps.Step == 9 || Steps.Step == 11 || Steps.Step == 13))))
+                if(other.GetComponent<CenterfugtunesControl>().NumberOfElements > 0)
                 {
-                    GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(WorkingName, true);
-                    GoToCenter = false;
-                    if (Steps.Step < 13)
-                        Steps.NextStep();
-                    else DonePanel.SetActive(true);
+                    ambool = other;
+                    ResetCameraValues();
+                    if (GoToCenter)
+                    { 
+                        if ((WorkingName == "Thermo" && Steps.Step == 5) ||
+                        (WorkingName == "Center" &&
+                        (Steps.Step == 7 || Steps.Step == 9 || Steps.Step == 11 || Steps.Step == 13)))
+                        {
+                            GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(WorkingName, true);
+                            GoToCenter = false;
+                        }
+                        else
+                        {
+                            ErrorPanelText.text = "Wrong Step";
+                            Steps.WrongStepPanel.SetActive(true);
+                            other.GetComponent<CenterfugtunesControl>().ThermoDone = true;
+                        }
+                    }
+                    
                 }
                 else
                 {
-                    //Steps.WrongStepPanel.SetActive(true);
                     other.GetComponent<CenterfugtunesControl>().ThermoDone = true;
+                    Steps.WrongStepPanel.SetActive(true);
+                    ErrorPanelText.text = "Empty Sample";
                 }
             }
         }
@@ -86,7 +96,9 @@ public class Machine : MonoBehaviour
         //Temp.text = ChangeValue.RVal.ToString();
         ambool.GetComponent<CenterfugtunesControl>().ThermoDone = true;
         TurnOff();
-
+        if (Steps.Step < 13)
+            Steps.NextStep();
+        else DonePanel.SetActive(true);
     }
 
 

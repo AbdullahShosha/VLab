@@ -320,6 +320,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a8d0c6b3cb7eb4d89989408e489973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ready: 0
+  NumberOfElements: 0
+  CenterDone: 0
+  ThermoDone: 0
+  FreezingDone: 0
+  VotrexDone: 0
   time: 0
+  Ttext: {fileID: 9176174803447065264, guid: f17ba22801158d941a5fba1af026dda4, type: 3}
   Ready: {fileID: 5668954517577652186, guid: f509f5bff74e8fb4cbb2f8865b1f516a, type: 3}
