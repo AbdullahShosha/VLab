@@ -8,6 +8,10 @@ TagManager:
   - Centerfugtunes
   - Buffer
   - Machine
+  - Step
+  - StepText
+  - WrongStep
+  - Votrex
   layers:
   - Default
   - TransparentFX

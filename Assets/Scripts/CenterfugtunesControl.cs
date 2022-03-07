@@ -8,17 +8,17 @@ public class CenterfugtunesControl : MonoBehaviour
     public IDictionary<string, int> Inside = new Dictionary<string, int>();
     public int NumberOfElements = 0;
 
-    public bool CenterDone = false,ThermoDone = false,FreezingDone = false , Votrex = false;
+    public bool CenterDone = false,ThermoDone = false,FreezingDone = false , VotrexDone = false;
     public float time = 0;
     public Text Ttext;
     public Transform Ready;
 
     private void Update()
     {
-        if (CenterDone || ThermoDone || FreezingDone)
+        if (CenterDone || ThermoDone || FreezingDone || VotrexDone)
         {
             gameObject.transform.position = Ready.position;
-            CenterDone = false; ThermoDone = false; FreezingDone = false;
+            CenterDone = false; ThermoDone = false; FreezingDone = false; VotrexDone = false;
         }
     }
 
@@ -31,15 +31,37 @@ public class CenterfugtunesControl : MonoBehaviour
             if (other.CompareTag("pipepitte") &&
                 other.GetComponent<PipepitteController>().InsidePip != "empty")
             {
-                if (Inside.ContainsKey(other.GetComponent<PipepitteController>().InsidePip))
-                    Inside[other.GetComponent<PipepitteController>().InsidePip] += other.GetComponent<PipepitteController>().Size;
+
+                if((Steps.Step == 1 && other.GetComponent<PipepitteController>().InsidePip == "Blood" && other.GetComponent<PipepitteController>().Size == 200)||
+                    (Steps.Step == 2 && other.GetComponent<PipepitteController>().InsidePip == "KProtein" && other.GetComponent<PipepitteController>().Size == 20)||
+                    (Steps.Step == 3 && other.GetComponent<PipepitteController>().InsidePip == "LysisSolution" && other.GetComponent<PipepitteController>().Size == 400)||
+                    (Steps.Step == 6 && other.GetComponent<PipepitteController>().InsidePip == "Ithanol" && other.GetComponent<PipepitteController>().Size == 200)||
+                    (Steps.Step == 8 && other.GetComponent<PipepitteController>().InsidePip == "WashBuffer1" && other.GetComponent<PipepitteController>().Size == 500)||
+                    (Steps.Step == 10 && other.GetComponent<PipepitteController>().InsidePip == "ElutionBuffer" && other.GetComponent<PipepitteController>().Size == 200)||
+                    (Steps.Step == 12 && other.GetComponent<PipepitteController>().InsidePip == "WashBuffer2" && other.GetComponent<PipepitteController>().Size == 500))
+                {
+                    if (Inside.ContainsKey(other.GetComponent<PipepitteController>().InsidePip))
+                        Inside[other.GetComponent<PipepitteController>().InsidePip] += other.GetComponent<PipepitteController>().Size;
+                    else
+                    {
+                        Inside.Add(other.GetComponent<PipepitteController>().InsidePip, other.GetComponent<PipepitteController>().Size);
+                        NumberOfElements++;
+                    }
+                    Steps.NextStep();
+                    other.transform.position =other.GetComponent<PipepitteController>().Reset.position ;
+                }
+                other.GetComponent<PipepitteController>().InsidePip = "empty";
+                other.GetComponent<PipepitteController>().Size = 0;
+            }
+            if (Steps.Step == 4)
+            {
+                if (other.CompareTag("Votrex"))
+                    Steps.NextStep();
                 else
                 {
-                    Inside.Add(other.GetComponent<PipepitteController>().InsidePip, other.GetComponent<PipepitteController>().Size);
-                    NumberOfElements++;
+                    Steps.WrongStepPanel.SetActive(false);
+                    VotrexDone = true;
                 }
-
-                other.GetComponent<PipepitteController>().InsidePip = "empty";
             }
 
             

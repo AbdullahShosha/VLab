@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Machine : MonoBehaviour
@@ -9,7 +10,7 @@ public class Machine : MonoBehaviour
     private float time = 0;
     public string WorkingName, WorkingViewName;
     protected Collider ambool;
-
+    public GameObject DonePanel;
     public Text MachineScreenTime, TriggerStayTime;
     public Animator Work;
 
@@ -19,7 +20,7 @@ public class Machine : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.GetComponent<CenterfugtunesControl>().NumberOfElements);
+        //Debug.Log(other.GetComponent<CenterfugtunesControl>().NumberOfElements);
         if (time >= 2.0f)
         {
             TriggerStayTime.text = ((int)time).ToString();
@@ -28,10 +29,20 @@ public class Machine : MonoBehaviour
             {
                 ambool = other;
                 ResetCameraValues();
-                if (GoToCenter)
+                if (GoToCenter && ((WorkingName == "Thermo" && Steps.Step == 5) ||
+                    (WorkingName == "Center" &&
+                    (Steps.Step == 7 || Steps.Step == 9 || Steps.Step == 11 || Steps.Step == 13))))
                 {
                     GameObject.Find("mainCamera").GetComponent<Animator>().SetBool(WorkingName, true);
                     GoToCenter = false;
+                    if (Steps.Step < 13)
+                        Steps.NextStep();
+                    else DonePanel.SetActive(true);
+                }
+                else
+                {
+                    //Steps.WrongStepPanel.SetActive(true);
+                    other.GetComponent<CenterfugtunesControl>().ThermoDone = true;
                 }
             }
         }

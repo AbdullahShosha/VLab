@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class bufferControl : MonoBehaviour
 {
-    public int Or;
+   
     public string Name ;
     static bool IsOpen;
     public GameObject buf;
