@@ -7,18 +7,33 @@ public class FreezerController : MonoBehaviour
 {
 
     public static int Temp;
-    public Text Field;
-    public GameObject Panel;
+    public Text Field, ErrorPanelText;
+    public GameObject Panel,DonePanel;
 
     public void Set()
     {
         Temp = int.Parse(Field.text);
-        Field.text = "";
+        if (Temp == 20)
+        {
+            Field.text = "";
+            DonePanel.SetActive(true);
+        }
+        else
+        {
+            ErrorPanelText.text = "the temperature must be 20 degrees";
+            Steps.WrongStepPanel.SetActive(true); 
+        }
         Panel.SetActive(false);
-        
     }
     public void ONPanel()
     {
-        Panel.SetActive(true);
+        if (Steps.Step == 14)
+            Panel.SetActive(true);
+        else
+        {
+            ErrorPanelText.text = "Wrong Step";
+            Steps.WrongStepPanel.SetActive(true); 
+        }
+
     }
 }

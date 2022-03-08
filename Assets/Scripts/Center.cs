@@ -5,5 +5,5 @@ using UnityEngine.UI;
 
 public class Center : Machine
 {
-    public Text SpeedOnMachineScreen;
+    
 }

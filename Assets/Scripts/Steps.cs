@@ -9,7 +9,7 @@ public class Steps : MonoBehaviour
     public static Text steptext, instructiontext;
     public static GameObject WrongStepPanel;
     public GameObject WrongStepPanel1;
-    static string[] instructions = new string[13];
+    static string[] instructions = new string[14];
     public static int Step = 1;
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,7 @@ public class Steps : MonoBehaviour
         instructions[10] = "place the sample in the centerifuge and set it to 8000 cycles per minute for 3m";
         instructions[11] = "take 500 Microliters from Wash buffer2";
         instructions[12] = "place the sample in the centerifuge and set it to 14000 cycles per minute for 3m";
+        instructions[13] = "put the sample in the freezer at a teperature of 20 degrees";
         steptext = GameObject.FindGameObjectWithTag("Step").GetComponent<Text>();
         instructiontext = GameObject.FindGameObjectWithTag("StepText").GetComponent<Text>();
         WrongStepPanel = WrongStepPanel1;

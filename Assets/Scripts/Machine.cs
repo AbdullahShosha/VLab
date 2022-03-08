@@ -10,8 +10,8 @@ public class Machine : MonoBehaviour
     private float time = 0;
     public string WorkingName, WorkingViewName;
     protected Collider ambool;
-    public GameObject DonePanel;
-    public Text MachineScreenTime, TriggerStayTime ,ErrorPanelText;
+    
+    public Text MachineScreenTime, TriggerStayTime ,ErrorPanelText ,tempandcycle;
     public Animator Work;
 
     private void OnTriggerEnter(Collider other)
@@ -93,12 +93,13 @@ public class Machine : MonoBehaviour
         ResetCameraValues();
         GameObject.Find("mainCamera").GetComponent<Animator>().SetBool("Base", true);
         ChangeValue.RVal = 0;
+        tempandcycle.text = "0";
         //Temp.text = ChangeValue.RVal.ToString();
         ambool.GetComponent<CenterfugtunesControl>().ThermoDone = true;
         TurnOff();
-        if (Steps.Step < 13)
+        
             Steps.NextStep();
-        else DonePanel.SetActive(true);
+        
     }
 
 

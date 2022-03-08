@@ -13,8 +13,12 @@ public class CenterfugtunesControl : MonoBehaviour
     public Text Ttext;
     public Transform Ready;
 
+    //public delegate void test();
+
     private void Update()
     {
+        //test a = Update;
+        //a();
         if (CenterDone || ThermoDone || FreezingDone || VotrexDone)
         {
             gameObject.transform.position = Ready.position;

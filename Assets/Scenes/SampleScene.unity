@@ -1893,12 +1893,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkingName: Thermo
   WorkingViewName: ViewThermo
-  DonePanel: {fileID: 1898040686}
   MachineScreenTime: {fileID: 1617614401}
   TriggerStayTime: {fileID: 2123163994}
   ErrorPanelText: {fileID: 2071736955}
+  tempandcycle: {fileID: 132898396}
   Work: {fileID: 485746580}
-  TempOnMachineScreen: {fileID: 132898396}
 --- !u!65 &485746579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5339,12 +5338,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkingName: Center
   WorkingViewName: ViewCenter
-  DonePanel: {fileID: 1898040686}
   MachineScreenTime: {fileID: 588129287}
   TriggerStayTime: {fileID: 2123163994}
   ErrorPanelText: {fileID: 2071736955}
+  tempandcycle: {fileID: 2074322317}
   Work: {fileID: 2066288513}
-  SpeedOnMachineScreen: {fileID: 2074322317}
 --- !u!65 &1334652432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7318,7 +7316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Field: {fileID: 1778077458}
+  ErrorPanelText: {fileID: 2071736955}
   Panel: {fileID: 1916325306}
+  DonePanel: {fileID: 1898040686}
 --- !u!65 &1820416850
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -5,5 +5,6 @@ using UnityEngine.UI;
 
 public class Thermo : Machine
 {
-    public Text TempOnMachineScreen;
+    
+    
 }
