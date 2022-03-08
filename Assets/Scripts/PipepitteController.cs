@@ -32,6 +32,7 @@ public class PipepitteController : MonoBehaviour
 
     public void ONPanel()
     {
+        gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("Soaking", true);
         Size = 0;
         Panel.SetActive(true);
     }
@@ -41,6 +42,8 @@ public class PipepitteController : MonoBehaviour
         Field.Select();
         Field.text = "";
         Panel.SetActive(false);
+        transform.position = Reset.position;
+        gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("Soaking", false);
         Steps.instructiontext.text = "add it to the sample";
     }
 
@@ -60,15 +63,19 @@ public class PipepitteController : MonoBehaviour
                 (Steps.Step == 12 && other.gameObject.GetComponent<bufferControl>().Name == "WashBuffer2")))
                 {
                     InsidePip = other.gameObject.GetComponent<bufferControl>().Name;
-                    if (Size == 0)
-                    ONPanel();
                     
+                    if (Size == 0)
+                        ONPanel();
+
 
                 }
                 else
+                {
                     Steps.WrongStepPanel.SetActive(true);
+                    transform.position = Reset.position;
+                }
 
-                transform.position = Reset.position;
+                
             }
             
         }
@@ -79,5 +86,6 @@ public class PipepitteController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         time = 0;
+        
     }
 }
