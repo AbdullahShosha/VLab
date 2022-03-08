@@ -83,13 +83,14 @@ public class Machine : MonoBehaviour
 
     public IEnumerator SatrtWorking()
     {
+        gameObject.GetComponent<AudioSource>().Play();
         while (ChangeValue.MVal > 0)
         {
             yield return new WaitForSeconds(1);
             ChangeValue.MVal--;
             MachineScreenTime.text = ChangeValue.MVal.ToString();
         }
-
+        gameObject.GetComponent<AudioSource>().Stop();
         ResetCameraValues();
         GameObject.Find("mainCamera").GetComponent<Animator>().SetBool("Base", true);
         ChangeValue.RVal = 0;
