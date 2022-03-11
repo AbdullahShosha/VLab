@@ -7,7 +7,8 @@ public class CenterfugtunesControl : MonoBehaviour
 {
     public IDictionary<string, int> Inside = new Dictionary<string, int>();
     public int NumberOfElements = 0;
-
+    public Sprite NextStepHelper, WrongStephelper;
+    public Image helper;
     public bool CenterDone = false,ThermoDone = false,FreezingDone = false , VotrexDone = false;
     public float time = 0;
     public Text Ttext;
@@ -19,6 +20,7 @@ public class CenterfugtunesControl : MonoBehaviour
     {
         //test a = Update;
         //a();
+        
         if (CenterDone || ThermoDone || FreezingDone || VotrexDone)
         {
             gameObject.transform.position = Ready.position;
@@ -53,6 +55,7 @@ public class CenterfugtunesControl : MonoBehaviour
                         NumberOfElements++;
                     }
                     other.transform.GetChild(0).GetComponent<Animator>().SetBool("Soaking", false);
+                    helper.sprite = NextStepHelper;
                     Steps.NextStep();
                     other.transform.position = other.GetComponent<PipepitteController>().Reset.position;
                 }
@@ -62,14 +65,16 @@ public class CenterfugtunesControl : MonoBehaviour
             if (Steps.Step == 4)
             {
                 if (other.CompareTag("Votrex"))
+                { 
                     Steps.NextStep();
+                    VotrexDone = true;
+                }
                 else
                 {
                     Steps.WrongStepPanel.SetActive(false);
                     VotrexDone = true;
                 }
             }
-
 
         }
         else

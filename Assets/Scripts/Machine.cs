@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Machine : MonoBehaviour
 {
+    public Sprite NextStepHelper, WrongStephelper;
+    public Image helper;
     private bool GoToCenter;
     private float time = 0;
     public string WorkingName, WorkingViewName;
@@ -43,6 +45,7 @@ public class Machine : MonoBehaviour
                         {
                             ErrorPanelText.text = "Wrong Step";
                             Steps.WrongStepPanel.SetActive(true);
+                            helper.sprite = WrongStephelper;
                             other.GetComponent<CenterfugtunesControl>().ThermoDone = true;
                         }
                     }
@@ -52,6 +55,7 @@ public class Machine : MonoBehaviour
                 {
                     other.GetComponent<CenterfugtunesControl>().ThermoDone = true;
                     Steps.WrongStepPanel.SetActive(true);
+                    helper.sprite = WrongStephelper;
                     ErrorPanelText.text = "Empty Sample";
                 }
             }
@@ -98,8 +102,9 @@ public class Machine : MonoBehaviour
         //Temp.text = ChangeValue.RVal.ToString();
         ambool.GetComponent<CenterfugtunesControl>().ThermoDone = true;
         TurnOff();
-        
-            Steps.NextStep();
+
+        helper.sprite = NextStepHelper;
+        Steps.NextStep();
         
     }
 

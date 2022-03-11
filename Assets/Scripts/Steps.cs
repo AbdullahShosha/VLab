@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Steps : MonoBehaviour
 {
     public static Text steptext, instructiontext;
+    
     public static GameObject WrongStepPanel;
     public GameObject WrongStepPanel1;
     static string[] instructions = new string[14];

@@ -9,6 +9,8 @@ public class FreezerController : MonoBehaviour
     public static int Temp;
     public Text Field, ErrorPanelText;
     public GameObject Panel,DonePanel;
+    public Sprite Done,Wrong;
+    public Image helper;
 
     public void Set()
     {

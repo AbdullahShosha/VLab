@@ -10,6 +10,10 @@ public class Votrex : MonoBehaviour
     {
         Vortexon = !Vortexon;
         gameObject.GetComponent<Animator>().SetBool("IsWorking", Vortexon);
+        if (Vortexon)
+            gameObject.GetComponent<AudioSource>().Play();
+        else gameObject.GetComponent<AudioSource>().Stop();
+
     }
     
 }

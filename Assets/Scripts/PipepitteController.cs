@@ -8,6 +8,8 @@ public class PipepitteController : MonoBehaviour
 {
     public int Size = 0 ;
     public string InsidePip;
+    public Sprite NextStepHelper, WrongStephelper,putSample;
+    public Image helper;
     public GameObject Panel;
     public InputField Field;
     public Text Ttext;
@@ -45,6 +47,7 @@ public class PipepitteController : MonoBehaviour
         transform.position = Reset.position;
         gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("Soaking", false);
         Steps.instructiontext.text = "add it to the sample";
+        helper.sprite = putSample;
     }
 
     private void OnTriggerStay(Collider other)
@@ -72,6 +75,7 @@ public class PipepitteController : MonoBehaviour
                 else
                 {
                     Steps.WrongStepPanel.SetActive(true);
+                    helper.sprite = WrongStephelper;
                     transform.position = Reset.position;
                 }
 
